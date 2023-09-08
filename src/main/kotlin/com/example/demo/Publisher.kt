@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service
 class Publisher {
 
   @Autowired
-  lateinit var queueMessagingTemplate: SqsTemplate
+  lateinit var sqsTemplate: SqsTemplate
 
   fun publish() {
     val items = listOf(Item("foo", "bar"), Item("foo"), Item(bar = "bar"))
-    queueMessagingTemplate.send("list-queue", items)
+    sqsTemplate.send("list-queue", items)
   }
 
   fun publishSingle() {
-    queueMessagingTemplate.send("single-queue", Item("foo", "bar"))
+    sqsTemplate.send("single-queue", Item("foo", "bar"))
   }
 }

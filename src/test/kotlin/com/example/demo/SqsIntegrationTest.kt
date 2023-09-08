@@ -1,6 +1,6 @@
 package com.example.demo
 
-import com.example.demo.SqsIntegrationTest.TestConfig.*
+import com.example.demo.SqsIntegrationTest.TestConfig.SqsUrlInitializer
 import io.awspring.cloud.core.region.StaticRegionProvider
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.core.spec.style.DescribeSpec
@@ -26,8 +26,6 @@ import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider
 import software.amazon.awssdk.regions.Region
 import software.amazon.awssdk.regions.providers.AwsRegionProvider
-
-private const val s = "TEST-PARTNER"
 
 @Testcontainers
 @DirtiesContext
