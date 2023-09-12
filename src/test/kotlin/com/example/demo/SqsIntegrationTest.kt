@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Primary
 import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.TestPropertySource
 import org.springframework.test.context.web.WebAppConfiguration
 import org.testcontainers.containers.localstack.LocalStackContainer
 import org.testcontainers.containers.localstack.LocalStackContainer.Service.SQS
@@ -53,7 +52,6 @@ class SqsIntegrationTest : DescribeSpec() {
   }
 
   @TestConfiguration
-  @TestPropertySource(properties = ["amazon.aws.accesskey=test1", "amazon.aws.secretkey=test231"])
   class TestConfig {
 
     @Bean
