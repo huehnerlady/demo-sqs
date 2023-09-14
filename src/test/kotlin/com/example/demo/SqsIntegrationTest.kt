@@ -5,7 +5,6 @@ import io.awspring.cloud.core.region.StaticRegionProvider
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.core.spec.style.DescribeSpec
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.boot.test.util.TestPropertyValues
@@ -38,9 +37,6 @@ class SqsIntegrationTest : DescribeSpec() {
 
   @Autowired
   lateinit var publisher: Publisher
-
-  @Value("\${cloud.aws.sqs.endpoint}")
-  lateinit var endpoint: String
 
   init {
 
@@ -84,7 +80,7 @@ class SqsIntegrationTest : DescribeSpec() {
         localStack.start()
         localStack.execInContainer("awslocal", "sqs", "create-queue", "--queue-name", "single-queue")
         localStack.execInContainer("awslocal", "sqs", "create-queue", "--queue-name", "list-queue")
-        TestPropertyValues.of("cloud.aws.sqs.endpoint=${localStack.getEndpointOverride(SQS)}")
+        TestPropertyValues.of("spring.cloud.aws.sqs.endpoint=${localStack.getEndpointOverride(SQS)}")
           .applyTo(applicationContext.environment)
       }
     }
