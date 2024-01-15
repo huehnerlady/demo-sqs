@@ -5,3 +5,12 @@ server:
     context-path: /
 
 debug: true
+
+spring:
+  cloud:
+    aws:
+      sqs:
+        listener:
+          max-messages-per-poll: 50
+          max-concurrent-messages: 50
+          poll-timeout: 10

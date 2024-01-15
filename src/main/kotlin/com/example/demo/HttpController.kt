@@ -14,15 +14,21 @@ class HttpController {
   @Autowired
   lateinit var publisher: Publisher
 
-  @RequestMapping(value = ["/send-single"], method = [POST])
+  @RequestMapping(value = ["/publish-single"], method = [POST])
   fun publishSingle() {
     logger.info("publishing single message")
     publisher.publishSingle()
   }
 
-  @RequestMapping(value = ["/send-list"], method = [POST])
+  @RequestMapping(value = ["/publish-list"], method = [POST])
   fun publishList() {
     logger.info("publishing list of messages")
     publisher.publish()
+  }
+
+  @RequestMapping(value = ["/publish-many"], method = [POST])
+  fun publishMany() {
+    logger.info("publishing list of messages")
+    publisher.publishMany()
   }
 }

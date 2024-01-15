@@ -10,13 +10,19 @@ class Listener {
   val logger = LoggerFactory.getLogger(this::class.java)
 
   @SqsListener("list-queue")
-  fun processCacheRequest(items: List<Item?>?) {
+  fun processCacheRequestList(items: List<Item?>?) {
     logger.info("items: $items")
     return
   }
 
+  @SqsListener("many-queue", maxMessagesPerPoll = "50", maxConcurrentMessages = "50", pollTimeoutSeconds = "10")
+  fun processCacheRequestMany(items: List<Item?>) {
+    logger.info("received ${items.size} items")
+    return
+  }
+
   @SqsListener("single-queue")
-  fun processCacheRequest(item: Item?) {
+  fun processCacheRequestSingle(item: Item?) {
     logger.info("item: $item")
     return
   }
